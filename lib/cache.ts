@@ -2,7 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import { CacheEntry } from '@/types';
 
-const CACHE_DIR = path.join(process.cwd(), '.cache');
+const CACHE_DIR = process.env.VERCEL
+  ? path.join('/tmp', '.cache')
+  : path.join(process.cwd(), '.cache');
 
 function hashKey(key: string): string {
   let hash = 0;
